@@ -1,0 +1,37 @@
+{
+  "name": "viliniu",
+  "version": "1.0.0",
+  "description": "Viliniu - A PayloadCMS-powered platform for farmers' online stores",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
+    "build:server": "tsc",
+    "build": "npm run build:payload && npm run build:server",
+    "serve": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "generate:graphQLSchema": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:graphQLSchema"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.x",
+    "@payloadcms/bundler-webpack": "^1.x",
+    "@payloadcms/db-postgres": "^1.x",
+    "@payloadcms/plugin-cloud": "^3.x",
+    "@payloadcms/plugin-stripe": "^0.x",
+    "@payloadcms/richtext-slate": "^1.x",
+    "dotenv": "^16.x",
+    "express": "^4.x",
+    "payload": "^2.x",
+    "stripe": "^14.x"
+  },
+  "devDependencies": {
+    "@types/express": "^4.x",
+    "@types/node": "^20.x",
+    "cross-env": "^7.x",
+    "nodemon": "^3.x",
+    "ts-node": "^10.x",
+    "typescript": "^5.x"
+  },
+  "author": "",
+  "license": "MIT"
+}
