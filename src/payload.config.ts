@@ -8,6 +8,7 @@ import { stripePlugin } from '@payloadcms/plugin-stripe';
 
 // Import collections
 import { Farmers } from './collections/Farmers';
+import { Media } from './collections/Media';
 import { Stores } from './collections/Stores';
 import { Products } from './collections/Products';
 import { Orders } from './collections/Orders';
@@ -24,6 +25,7 @@ export default buildConfig({
   editor: slateEditor({}),
   collections: [
     Farmers,
+    Media,
     Stores,
     Products,
     Orders,
@@ -44,6 +46,18 @@ export default buildConfig({
     }),
     cloudStorage({
       collections: {
+        'media': {
+          adapter: s3Adapter({
+            config: {
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+              },
+              region: process.env.S3_REGION,
+              bucket: process.env.S3_BUCKET,
+            },
+          }),
+        },
         'products': {
           adapter: s3Adapter({
             config: {
